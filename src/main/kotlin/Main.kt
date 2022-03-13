@@ -1,7 +1,7 @@
-const val PRICE = 10000.0
+const val PRICE = 100_00
 fun main() {
-    val musicLover = true
-    var lastBuy: Double = 0.0
+    val musicLover = false
+    var lastBuy = 0
     var trekSum: Int
     while (true) {
         println("Введите количество треков для покупки")
@@ -14,14 +14,13 @@ fun main() {
                 println("Ошибка ввода, попробуйте еще раз")
             }
         }
-        var sum: Double = trekSum * PRICE
+        var totalPrice = trekSum * PRICE
         when (lastBuy) {
-            in 1000100.0..Double.MAX_VALUE -> sum *= 0.05
-            in 100100.0..10000.0 -> sum -= 10000
+            in 10001_00..Int.MAX_VALUE -> totalPrice = (totalPrice-totalPrice * 0.05).toInt()
+            in 1001_00..10000_00 -> totalPrice -= 100_00
         }
-        sum = if (musicLover == true) sum * 0.01 else sum
-        lastBuy = sum / 100
-        println("Cумма покупки $lastBuy")
+        totalPrice = if (musicLover == true) (totalPrice-totalPrice * 0.01).toInt() else totalPrice
+        lastBuy = totalPrice
+        println("Cумма покупки " + totalPrice / 100 + ".руб " + totalPrice % 100 + "коп.")
     }
 }
-/// TODO: 12.03.2022 перевести все в инт в копейках тожесамое сделать в money transfer  
